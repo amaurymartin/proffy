@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 
-htl, bodym #root {
+html, body, #root {
   height: 100vh;
 }
 

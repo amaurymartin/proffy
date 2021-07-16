@@ -1,3 +1,11 @@
-const App = (): JSX.Element => <h1>Hello, World!</h1>
+import './assets/styles/global.css'
+import Home from './pages/home'
 
+const App = (): JSX.Element => {
+  return (
+    <>
+      <Home />
+    </>
+  )
+}
 export default App

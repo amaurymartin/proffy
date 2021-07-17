@@ -1,12 +1,9 @@
 import './assets/styles/global.css'
-import Home from './pages/home'
+
+import Routes from './routes'
 
 const App = (): JSX.Element => {
-  return (
-    <>
-      <Home />
-    </>
-  )
+  return <Routes />
 }
 
 export default App

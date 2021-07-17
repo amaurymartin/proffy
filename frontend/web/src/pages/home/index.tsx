@@ -28,12 +28,10 @@ const Home = (): JSX.Element => {
           </a>
         </div>
 
-        <div className="footer">
-          <span>
-            Total of 200 classes already completed
-            <img src={purpleHeartIcon} alt="Purple heart" />
-          </span>
-        </div>
+        <span className="stats">
+          More than 420 people connected
+          <img src={purpleHeartIcon} alt="Purple heart" />
+        </span>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import './styles.css'
 
-const EducatorsList = (): JSX.Element => {
+const EducatorsIndex = (): JSX.Element => {
   return (
     <>
       <h1>Educators List</h1>
@@ -8,4 +8,4 @@ const EducatorsList = (): JSX.Element => {
   )
 }
 
-export default EducatorsList
+export default EducatorsIndex

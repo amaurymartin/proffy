@@ -4,6 +4,8 @@ import studyIcon from '../../assets/images/icons/study.svg'
 import teachIcon from '../../assets/images/icons/teach.svg'
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 
+import './styles.css'
+
 const Home = (): JSX.Element => {
   return (
     <div id="home">
@@ -26,10 +28,12 @@ const Home = (): JSX.Element => {
           </a>
         </div>
 
-        <span>
-          Total of 200 classes already completed
-          <img src={purpleHeartIcon} alt="Purple heart" />
-        </span>
+        <div className="footer">
+          <span>
+            Total of 200 classes already completed
+            <img src={purpleHeartIcon} alt="Purple heart" />
+          </span>
+        </div>
       </div>
     </div>
   )

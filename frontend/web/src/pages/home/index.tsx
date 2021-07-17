@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import logoImg from '../../assets/images/logo.svg'
 import homeImg from '../../assets/images/home.svg'
 import studyIcon from '../../assets/images/icons/study.svg'
@@ -18,14 +20,14 @@ const Home = (): JSX.Element => {
         <img src={homeImg} alt="Study plataform" className="home-image" />
 
         <div className="buttons-container">
-          <a href="/" className="study">
+          <Link to="/educators" className="study">
             <img src={studyIcon} alt="Study" />
             Study
-          </a>
-          <a href="/" className="teach">
+          </Link>
+          <Link to="/educators/new" className="teach">
             <img src={teachIcon} alt="Teach" />
             Teach
-          </a>
+          </Link>
         </div>
 
         <span className="stats">

@@ -3,7 +3,7 @@ import './styles.css'
 const EducatorsIndex = (): JSX.Element => {
   return (
     <>
-      <h1>Educators List</h1>
+      <h1>Educators Index</h1>
     </>
   )
 }

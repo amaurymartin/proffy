@@ -1,6 +1,6 @@
 import './styles.css'
 
-const EducatorsForm = (): JSX.Element => {
+const EducatorsNew = (): JSX.Element => {
   return (
     <>
       <h1>Educators Form</h1>
@@ -8,4 +8,4 @@ const EducatorsForm = (): JSX.Element => {
   )
 }
 
-export default EducatorsForm
+export default EducatorsNew

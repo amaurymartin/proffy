@@ -1,10 +1,12 @@
+import Header from '../../../components/header'
+
 import './styles.css'
 
 const EducatorsNew = (): JSX.Element => {
   return (
-    <>
-      <h1>Educators New</h1>
-    </>
+    <div id="educators-new" className="container">
+      <Header text="It's amazing that you want to teach classes" />
+    </div>
   )
 }
 

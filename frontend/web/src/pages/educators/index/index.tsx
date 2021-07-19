@@ -1,26 +1,40 @@
-import { Link } from 'react-router-dom'
-
-import logoImg from '../../../assets/images/logo.svg'
-import backIcon from '../../../assets/images/icons/back.svg'
+import Header from '../../../components/header'
 
 import './styles.css'
 
 const EducatorsIndex = (): JSX.Element => {
   return (
     <div id="educators-index" className="container">
-      <header className="page-header">
-        <div className="top-bar-container">
-          <Link to="/">
-            <img src={backIcon} alt="Go back" />
-          </Link>
+      <Header text="These are the available educators">
+        <form id="educators-search">
+          <div className="educators-search">
+            <label htmlFor="subject">
+              Subject
+              <select id="subject">
+                <option value="0">Select your subject</option>
+              </select>
+            </label>
+          </div>
 
-          <img src={logoImg} alt="Proffy" />
-        </div>
+          <div className="educators-search">
+            <label htmlFor="day">
+              Week day
+              <select id="day">
+                <option value="0">Select the best day for you</option>
+              </select>
+            </label>
+          </div>
 
-        <div className="header-content">
-          <strong>These are the available educators</strong>
-        </div>
-      </header>
+          <div className="educators-search">
+            <label htmlFor="time">
+              Time
+              <select id="time">
+                <option value="0">Select the best time for you</option>
+              </select>
+            </label>
+          </div>
+        </form>
+      </Header>
     </div>
   )
 }

@@ -17,12 +17,29 @@ class classRepository {
       classes.map((klass) => ({
         educator_id: educatorId,
         key: uuidv4(),
-        subject: klass.subject,
+        subject: klass.subject.trim().toUpperCase(),
         description: klass.description,
         price: klass.price,
         status: 0,
       })),
     );
+  }
+
+  static async index(subject: string, weekDay: string, time: string) {
+    return connection('classes')
+      .leftJoin('educators', 'classes.educator_id', 'educators.id')
+      .leftJoin('educators_schedules', 'educators.id', 'educators_schedules.educator_id')
+      .modify((qb) => {
+        if (subject !== 'undefined') qb.where('subject', subject.trim().toUpperCase());
+      })
+      .modify((qb) => {
+        if (!Number.isNaN(Number.parseInt(weekDay, 10))) {
+          qb.where('week_day', Number.parseInt(weekDay, 10));
+        }
+      })
+      .modify((qb) => {
+        if (time !== 'undefined') qb.whereRaw(`'${time}' between starts_at and ends_at`);
+      });
   }
 }
 

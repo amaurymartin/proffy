@@ -28,9 +28,15 @@ class classRepository {
   static async index(subject: string, weekDay: string, time: string) {
     return connection('classes')
       .leftJoin('educators', 'classes.educator_id', 'educators.id')
-      .leftJoin('educators_schedules', 'educators.id', 'educators_schedules.educator_id')
+      .leftJoin(
+        'educators_schedules',
+        'educators.id',
+        'educators_schedules.educator_id',
+      )
       .modify((qb) => {
-        if (subject !== 'undefined') qb.where('subject', subject.trim().toUpperCase());
+        if (subject !== 'undefined') {
+          qb.where('subject', subject.trim().toUpperCase());
+        }
       })
       .modify((qb) => {
         if (!Number.isNaN(Number.parseInt(weekDay, 10))) {
@@ -38,26 +44,30 @@ class classRepository {
         }
       })
       .modify((qb) => {
-        if (time !== 'undefined') qb.whereRaw(`'${time}' between starts_at and ends_at`);
+        if (time !== 'undefined') {
+          qb.whereRaw(`'${time}' between starts_at and ends_at`);
+        }
       });
   }
 
   static async patch(uuid: string, key: string, value: string) {
     try {
-      const klass = await connection('classes').select('*').where({ key: uuid });
+      const klass = await connection('classes')
+        .select('*')
+        .where({ key: uuid });
 
       if (!klass) return { success: true, error: 'Not found' };
 
-      const newValue: {[k: string]: any} = {};
+      const newValue: { [k: string]: any } = {};
       newValue[key] = value;
 
-      console.log('update', newValue);
-      await connection("classes").update(newValue).where({ key: uuid });
+      await connection('classes').update(newValue).where({ key: uuid });
 
       return { success: true, error: '' };
     } catch (error) {
       console.log(error);
-      return { success: false, error: 'Error on updating class' };
+
+      return { success: false, error: 'Error on updating class. Check your data!' };
     }
   }
 }

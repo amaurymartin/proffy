@@ -7,15 +7,18 @@ type PatchParams = {
   klass: {
     key: string;
     value: string;
-  }
+  };
 };
 
 class ClassesController {
   static async index(req: Request, res: Response) {
     const { subject, weekDay, time } = req.query;
 
-    const classes: Class[] = await
-    classRepository.index(String(subject), String(weekDay), String(time));
+    const classes: Class[] = await classRepository.index(
+      String(subject),
+      String(weekDay),
+      String(time),
+    );
 
     const count = classes.length || 0;
     res.header('X-Total-Count', count.toString());
@@ -27,10 +30,14 @@ class ClassesController {
     const { key } = req.params;
     const { klass }: PatchParams = req.body;
 
-    const { success, error } = await classRepository.patch(key, klass.key, klass.value);
+    const { success, error } = await classRepository.patch(
+      key,
+      klass.key,
+      klass.value,
+    );
 
     if (!success) return res.status(422).json({ error });
-    if (error.length > 0) return res.sendStatus(404);
+    if (error.length > 0) return res.status(404).json({ error: 'Not found' });
 
     return res.sendStatus(204);
   }

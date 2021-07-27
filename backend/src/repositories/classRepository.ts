@@ -63,10 +63,11 @@ class classRepository {
 
       if (!klass) return { success: true, error: 'Not found' };
 
-      const newValue: { [k: string]: any } = {};
-      newValue[key] = value;
+      const newValues: { [k: string]: any } = {};
+      newValues[key] = value;
+      newValues.updated_at = new Date();
 
-      await connection('classes').update(newValue).where({ key: uuid });
+      await connection('classes').update(newValues).where({ key: uuid });
 
       return { success: true, error: '' };
     } catch (error) {

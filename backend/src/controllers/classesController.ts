@@ -12,12 +12,15 @@ type PatchParams = {
 
 class ClassesController {
   static async index(req: Request, res: Response) {
-    const { subject, weekDay, time } = req.query;
+    const {
+      subject, weekDay, time, status,
+    } = req.query;
 
     const classes: Class[] = await classRepository.index(
       String(subject),
       String(weekDay),
       String(time),
+      String(status),
     );
 
     const count = classes.length || 0;

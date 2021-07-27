@@ -25,7 +25,7 @@ class classRepository {
     );
   }
 
-  static async index(subject: string, weekDay: string, time: string) {
+  static async index(subject: string, weekDay: string, time: string, status: string) {
     return connection('classes')
       .leftJoin('educators', 'classes.educator_id', 'educators.id')
       .leftJoin(
@@ -46,6 +46,11 @@ class classRepository {
       .modify((qb) => {
         if (time !== 'undefined') {
           qb.whereRaw(`'${time}' between starts_at and ends_at`);
+        }
+      })
+      .modify((qb) => {
+        if (!Number.isNaN(Number.parseInt(status, 10))) {
+          qb.where('status', Number.parseInt(weekDay, 10));
         }
       });
   }

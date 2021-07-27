@@ -45,6 +45,7 @@ class EducatorsController {
 
       return res.status(201).json(educatorId);
     } catch (error) {
+      console.error(error);
       await trx.rollback();
 
       return res.status(422).json({ error: 'Error on creating educator. Check your data!' });

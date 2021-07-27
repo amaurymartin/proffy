@@ -41,6 +41,25 @@ class classRepository {
         if (time !== 'undefined') qb.whereRaw(`'${time}' between starts_at and ends_at`);
       });
   }
+
+  static async patch(uuid: string, key: string, value: string) {
+    try {
+      const klass = await connection('classes').select('*').where({ key: uuid });
+
+      if (!klass) return { success: true, error: 'Not found' };
+
+      const newValue: {[k: string]: any} = {};
+      newValue[key] = value;
+
+      console.log('update', newValue);
+      await connection("classes").update(newValue).where({ key: uuid });
+
+      return { success: true, error: '' };
+    } catch (error) {
+      console.log(error);
+      return { success: false, error: 'Error on updating class' };
+    }
+  }
 }
 
 export default classRepository;

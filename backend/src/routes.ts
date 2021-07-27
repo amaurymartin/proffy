@@ -15,5 +15,6 @@ routes.post('/educators', EducatorsController.create);
 
 // Classes resource
 routes.get('/classes', ClassesController.index);
+routes.patch('/classes/:key', ClassesController.patch);
 
 export default routes;

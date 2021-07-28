@@ -45,6 +45,7 @@ class EducatorsController {
 
       return res.status(201).json(educatorId);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
 
       await trx.rollback();

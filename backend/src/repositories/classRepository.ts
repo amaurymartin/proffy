@@ -30,7 +30,12 @@ class classRepository {
     );
   }
 
-  static async index(subject: string, weekDay: string, time: string, status: string) {
+  static async index(
+    subject: string,
+    weekDay: string,
+    time: string,
+    status: string,
+  ) {
     return connection('classes')
       .select('classes.*', 'educators.key as educator_key')
       .leftJoin('educators', 'classes.educator_id', 'educators.id')
@@ -81,7 +86,10 @@ class classRepository {
       // eslint-disable-next-line no-console
       console.log(error);
 
-      return { success: false, error: 'Error on updating class. Check your data!' };
+      return {
+        success: false,
+        error: 'Error on updating class. Check your data!',
+      };
     }
   }
 }

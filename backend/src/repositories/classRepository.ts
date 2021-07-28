@@ -1,13 +1,18 @@
 import { Knex } from 'knex';
 import { v4 as uuidv4 } from 'uuid';
 
-import Class from '../models/class';
 import connection from '../db/connection';
+
+type ClassParams = {
+  subject: string;
+  description: string;
+  price: number;
+};
 
 class classRepository {
   static async create(
     educatorId: number,
-    classes: Class[],
+    classes: ClassParams[],
     trx: Knex.Transaction,
   ) {
     // eslint-disable-next-line no-param-reassign
@@ -27,6 +32,7 @@ class classRepository {
 
   static async index(subject: string, weekDay: string, time: string, status: string) {
     return connection('classes')
+      .select('classes.*', 'educators.key as educator_key')
       .leftJoin('educators', 'classes.educator_id', 'educators.id')
       .leftJoin(
         'educators_schedules',
@@ -50,9 +56,10 @@ class classRepository {
       })
       .modify((qb) => {
         if (!Number.isNaN(Number.parseInt(status, 10))) {
-          qb.where('status', Number.parseInt(weekDay, 10));
+          qb.where('status', Number.parseInt(status, 10));
         }
-      });
+      })
+      .distinct();
   }
 
   static async patch(uuid: string, key: string, value: string) {
@@ -71,6 +78,7 @@ class classRepository {
 
       return { success: true, error: '' };
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
 
       return { success: false, error: 'Error on updating class. Check your data!' };

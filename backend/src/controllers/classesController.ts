@@ -26,7 +26,20 @@ class ClassesController {
     const count = classes.length || 0;
     res.header('X-Total-Count', count.toString());
 
-    return res.status(200).json(classes);
+    return res.status(200).json({
+      classes: classes.map((klass) => (
+        {
+          key: klass.key,
+          subject: klass.subject,
+          description: klass.description,
+          price: klass.price,
+          status: klass.status,
+          educator: {
+            key: klass.educator_key,
+          },
+        }
+      )),
+    });
   }
 
   static async patch(req: Request, res: Response) {

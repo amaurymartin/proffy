@@ -5,7 +5,10 @@ import './styles.css'
 const EducatorsNew = (): JSX.Element => {
   return (
     <div id="educators-new" className="container">
-      <Header text="It's amazing that you want to teach classes" />
+      <Header
+        title="It's amazing that you want to teach classes"
+        subtitle="Fill the form to start teaching"
+      />
     </div>
   )
 }

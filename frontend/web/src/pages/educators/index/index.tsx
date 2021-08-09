@@ -6,7 +6,7 @@ import './styles.css'
 const EducatorsIndex = (): JSX.Element => {
   return (
     <div id="educators-index" className="container">
-      <Header text="These are the available educators">
+      <Header title="These are the available educators">
         <form id="educators-search">
           <div className="educators-search">
             <label htmlFor="subject">

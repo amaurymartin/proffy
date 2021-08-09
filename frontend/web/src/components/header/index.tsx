@@ -8,11 +8,12 @@ import backIcon from '../../assets/images/icons/back.svg'
 import './styles.css'
 
 type HeaderProps = {
-  text: string
+  title: string
+  subtitle?: string
   children?: ReactNode
 }
 
-const Header: React.FC<HeaderProps> = ({ text, children }) => {
+const Header: React.FC<HeaderProps> = ({ title, subtitle, children }) => {
   return (
     <header className="page-header">
       <div className="top-bar-container">
@@ -24,7 +25,8 @@ const Header: React.FC<HeaderProps> = ({ text, children }) => {
       </div>
 
       <div className="header-content">
-        <strong>{text}</strong>
+        <strong>{title}</strong>
+        {subtitle !== '' && <p>{subtitle}</p>}
 
         {children}
       </div>
@@ -33,8 +35,13 @@ const Header: React.FC<HeaderProps> = ({ text, children }) => {
 }
 
 Header.propTypes = {
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   children: PropTypes.node.isRequired,
+}
+
+Header.defaultProps = {
+  subtitle: '',
 }
 
 export default Header

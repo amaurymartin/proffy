@@ -29,9 +29,7 @@ const EducatorsIndex = (): JSX.Element => {
           <div className="educators-search">
             <label htmlFor="time">
               Time
-              <select id="time">
-                <option value="0">Select the best time for you</option>
-              </select>
+              <input type="time" id="time" />
             </label>
           </div>
         </form>

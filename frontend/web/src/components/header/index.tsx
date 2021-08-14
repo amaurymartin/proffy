@@ -37,11 +37,12 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, children }) => {
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 }
 
 Header.defaultProps = {
   subtitle: '',
+  children: null,
 }
 
 export default Header

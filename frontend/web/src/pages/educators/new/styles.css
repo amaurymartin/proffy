@@ -38,6 +38,10 @@
   border-bottom: 1px solid var(--color-line-in-white);
 }
 
+#educators-new main fieldset .input-block + .text-area-block {
+  margin-top: 1.4rem;
+}
+
 .input-block label {
   font-size: 1.4rem;
 }
@@ -67,6 +71,43 @@
   height: 2px;
   content: "";
   background: var(--color-primary-light);
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 0;
+}
+
+.text-area-block {
+  position: relative;
+}
+
+.text-area-block + .text-area-block {
+  margin-top: 1.4rem;
+}
+
+.text-area-block label {
+  font-size: 1.4rem;
+}
+
+.text-area-block textarea {
+  width: 100%;
+  height: 16rem;
+  min-height: 11.2rem;
+  margin-top: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-input-background);
+  border: 1px solid var(--color-line-in-white);
+  outline: 0;
+  resize: vertical;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem Archivo;
+}
+
+.text-area-block:focus-within::after {
+  width: calc(100% - 3.2rem);
+  height: 2px;
+  content: '';
+  background-color: var(--color-primary-light);
   position: absolute;
   left: 1.6rem;
   right: 1.6rem;

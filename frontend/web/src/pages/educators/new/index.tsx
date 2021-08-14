@@ -36,6 +36,13 @@ const EducatorsNew = (): JSX.Element => {
               <input type="text" id="whatsapp" />
             </label>
           </div>
+
+          <div className="text-area-block">
+            <label htmlFor="bio">
+              Bio
+              <textarea id="bio" />
+            </label>
+          </div>
         </fieldset>
 
         <fieldset>

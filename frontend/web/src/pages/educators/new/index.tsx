@@ -1,4 +1,5 @@
 import Header from '../../../components/header'
+import Select from '../../../components/select'
 
 import warningIcon from '../../../assets/images/icons/warning.svg'
 
@@ -48,12 +49,30 @@ const EducatorsNew = (): JSX.Element => {
         <fieldset>
           <legend>Classes</legend>
 
-          <div className="input-block">
-            <label htmlFor="subject">
-              Subject
-              <input type="text" id="subject" />
-            </label>
-          </div>
+          <Select
+            name="subject"
+            label="Subject"
+            placeholder="Select your subject"
+            options={[
+              { value: 'ENGLISH', label: 'English' },
+              { value: 'LITERATURE', label: 'Literature' },
+              { value: 'SPEECH', label: 'Speech' },
+              { value: 'WRITING', label: 'Writing' },
+              { value: 'FOREIGN', label: 'Foreign Language' },
+              { value: 'GEOGRAPHY', label: 'Geography' },
+              { value: 'HISTORY', label: 'History' },
+              { value: 'ECONOMICS', label: 'Economics' },
+              { value: 'MATH', label: 'Math' },
+              { value: 'ALGEBRA', label: 'Algebra' },
+              { value: 'GEOMETRY', label: 'Geometry' },
+              { value: 'STATISTICS', label: 'Statistics' },
+              { value: 'TRIGONOMETRY', label: 'Trigonometry' },
+              { value: 'SCIENCE', label: 'Science' },
+              { value: 'BIOLOGY', label: 'Biology' },
+              { value: 'CHEMISTRY', label: 'Chemistry' },
+              { value: 'PHYSICS', label: 'Physics' },
+            ]}
+          />
 
           <div className="input-block">
             <label htmlFor="price">

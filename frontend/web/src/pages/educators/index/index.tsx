@@ -1,5 +1,5 @@
 import Header from '../../../components/header'
-import Educator from '../../../components/Educator'
+import Educator from '../../../components/educator'
 
 import './styles.css'
 

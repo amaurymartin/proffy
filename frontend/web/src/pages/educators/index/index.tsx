@@ -1,5 +1,6 @@
 import Header from '../../../components/header'
 import Select from '../../../components/select'
+import Input from '../../../components/input'
 import Educator from '../../../components/educator'
 
 import './styles.css'
@@ -49,12 +50,7 @@ const EducatorsIndex = (): JSX.Element => {
             ]}
           />
 
-          <div className="educators-search">
-            <label htmlFor="time">
-              Time
-              <input type="time" id="time" />
-            </label>
-          </div>
+          <Input name="time" label="Time" type="time" />
         </form>
       </Header>
 

@@ -76,7 +76,8 @@
     bottom: -60px;
   }
 
-  #educators-search .educators-search + .educators-search {
+  #educators-search .educators-search + .educators-search,
+  #educators-search .select-block + .select-block {
     margin-top: 0;
   }
 

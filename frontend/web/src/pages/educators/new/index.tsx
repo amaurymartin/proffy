@@ -1,4 +1,5 @@
 import Header from '../../../components/header'
+import Input from '../../../components/input'
 import Select from '../../../components/select'
 
 import warningIcon from '../../../assets/images/icons/warning.svg'
@@ -17,26 +18,9 @@ const EducatorsNew = (): JSX.Element => {
         <fieldset>
           <legend>Personal data</legend>
 
-          <div className="input-block">
-            <label htmlFor="name">
-              Full Name
-              <input type="text" id="name" />
-            </label>
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="avatar">
-              Avatar
-              <input type="text" id="avatar" />
-            </label>
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="name">
-              Whatsapp
-              <input type="text" id="whatsapp" />
-            </label>
-          </div>
+          <Input name="name" label="Full Name" type="text" />
+          <Input name="avatar" label="Avatar" type="text" />
+          <Input name="whatsapp" label="Whatsapp" type="text" />
 
           <div className="text-area-block">
             <label htmlFor="bio">
@@ -83,7 +67,30 @@ const EducatorsNew = (): JSX.Element => {
         </fieldset>
 
         <fieldset>
-          <legend>Schedule</legend>
+          <legend>
+            Schedule
+            <button type="button">+ Add schedule</button>
+          </legend>
+
+          <div className="schedule">
+            <Select
+              name="day"
+              label="Week Day"
+              placeholder="Select the best day for you"
+              options={[
+                { value: '0', label: 'Sunday' },
+                { value: '1', label: 'Monday' },
+                { value: '2', label: 'Tuesday' },
+                { value: '3', label: 'Wednesday' },
+                { value: '4', label: 'Thursday' },
+                { value: '5', label: 'Friday' },
+                { value: '6', label: 'Saturday' },
+              ]}
+            />
+
+            <Input name="start-time" label="Start" type="time" />
+            <Input name="end-time" label="End" type="time" />
+          </div>
         </fieldset>
 
         <footer>

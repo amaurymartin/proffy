@@ -29,7 +29,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  placeholder: 'Type here',
+  placeholder: '',
 }
 
 export default Input

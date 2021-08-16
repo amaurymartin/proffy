@@ -38,6 +38,18 @@
   border-bottom: 1px solid var(--color-line-in-white);
 }
 
+#educators-new main fieldset legend button {
+  background: none;
+  border: 0;
+  color: var(--color-primary);
+  font: 700 1.6rem Archivo;
+  cursor: pointer;
+}
+
+#educators-new main fieldset legend button:hover {
+  color: var(--color-primary-dark);
+}
+
 #educators-new main fieldset .input-block + .text-area-block {
   margin-top: 1.4rem;
 }
@@ -166,6 +178,16 @@
 
   #educators-new main fieldset {
     padding: 0 6.4rem;
+  }
+
+  #educators-new main .schedule {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 1.6rem;
+  }
+
+  #educators-new main .schedule .input-block {
+    margin-top: 0 !important;
   }
 
   #educators-new main footer {

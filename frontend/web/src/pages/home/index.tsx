@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import api from '../../services/api'
 
 import logoImg from '../../assets/images/logo.svg'
 import homeImg from '../../assets/images/home.svg'
@@ -9,6 +12,17 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 import './styles.css'
 
 const Home = (): JSX.Element => {
+  const [connections, setConnections] = useState(0)
+
+  useEffect(() => {
+    const acceptedClassStatus = 1
+
+    api
+      .get('classes', { params: { status: acceptedClassStatus } })
+      .then((response) => {
+        setConnections(response.headers['x-total-count'] || 0)
+      })
+  }, [])
   return (
     <div id="home">
       <div id="home-content" className="home-container">
@@ -31,7 +45,7 @@ const Home = (): JSX.Element => {
         </div>
 
         <span className="stats">
-          More than 420 people connected
+          {`More than ${connections} people connected`}
           <img src={purpleHeartIcon} alt="Purple heart" />
         </span>
       </div>

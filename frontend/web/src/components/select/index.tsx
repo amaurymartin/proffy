@@ -1,4 +1,4 @@
-import { SelectHTMLAttributes } from 'react'
+import { ChangeEvent, SelectHTMLAttributes } from 'react'
 import PropTypes from 'prop-types'
 
 import './styles.css'
@@ -8,6 +8,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string
   placeholder?: string
   options: Option[]
+  onChange: (event: ChangeEvent<HTMLElement>, position?: number) => void
 }
 
 interface Option {
@@ -20,12 +21,13 @@ const Select: React.FC<SelectProps> = ({
   label,
   placeholder,
   options,
+  onChange,
 }) => {
   return (
     <div className="select-block">
       <label htmlFor={name}>
         {label}
-        <select id={name} defaultValue="">
+        <select name={name} defaultValue="" onChange={onChange}>
           <option value="" disabled hidden>
             {placeholder}
           </option>
@@ -50,6 +52,7 @@ Select.propTypes = {
       label: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 Select.defaultProps = {

@@ -33,6 +33,7 @@ const EducatorsIndex = (): JSX.Element => {
               { value: 'CHEMISTRY', label: 'Chemistry' },
               { value: 'PHYSICS', label: 'Physics' },
             ]}
+            onChange={() => undefined}
           />
 
           <Select
@@ -48,9 +49,15 @@ const EducatorsIndex = (): JSX.Element => {
               { value: '5', label: 'Friday' },
               { value: '6', label: 'Saturday' },
             ]}
+            onChange={() => undefined}
           />
 
-          <Input name="time" label="Time" type="time" />
+          <Input
+            name="time"
+            label="Time"
+            type="time"
+            onChange={() => undefined}
+          />
         </form>
       </Header>
 

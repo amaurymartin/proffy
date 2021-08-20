@@ -20,22 +20,24 @@ type Schedule = {
 const EducatorsNew = (): JSX.Element => {
   const history = useHistory()
 
-  const [schedule, setSchedule] = useState<Schedule[]>([
+  const [schedules, setSchedules] = useState<Schedule[]>([
     { weekDay: 0, startsAt: '', endsAt: '' },
   ])
 
   const [formData, setFormData] = useState({
     name: '',
     avatar: '',
+    email: '',
     whatsapp: '',
     bio: '',
     subject: '',
+    description: '',
     price: 0.0,
   })
 
   function addSchedule() {
-    setSchedule([
-      ...schedule,
+    setSchedules([
+      ...schedules,
       {
         weekDay: 0,
         startsAt: '',
@@ -63,30 +65,35 @@ const EducatorsNew = (): JSX.Element => {
   function fillScheduleData(event: ChangeEvent<HTMLElement>, position: number) {
     const selectEvent = event as ChangeEvent<HTMLSelectElement>
     const { name, value } = selectEvent.target
-    const newSchedule = schedule.map((item, index) => {
+    const newSchedule = schedules.map((item, index) => {
       if (index === position) return { ...item, [name]: value }
 
       return item
     })
 
-    setSchedule(newSchedule)
+    setSchedules(newSchedule)
   }
 
   async function createEducator(event: FormEvent) {
     event.preventDefault()
-    const { name, avatar, whatsapp, bio, subject, price } = formData
+    const { name, avatar, email, whatsapp, bio, subject, description, price } =
+      formData
 
     const payload = {
       educator: {
         name,
         avatar,
+        email,
         whatsapp,
         bio,
-        class: {
-          subject,
-          price,
-        },
-        schedule,
+        classes: [
+          {
+            subject,
+            description,
+            price,
+          },
+        ],
+        schedules,
       },
     }
 
@@ -127,6 +134,13 @@ const EducatorsNew = (): JSX.Element => {
               label="Avatar"
               type="text"
               value={formData.avatar}
+              onChange={fillForm}
+            />
+            <Input
+              name="email"
+              label="Email"
+              type="email"
+              value={formData.email}
               onChange={fillForm}
             />
             <Input
@@ -187,6 +201,17 @@ const EducatorsNew = (): JSX.Element => {
                 />
               </label>
             </div>
+
+            <div className="text-area-block">
+              <label htmlFor="description">
+                Class description
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={fillForm}
+                />
+              </label>
+            </div>
           </fieldset>
 
           <fieldset>
@@ -197,7 +222,7 @@ const EducatorsNew = (): JSX.Element => {
               </button>
             </legend>
 
-            {schedule.map((item, index) => (
+            {schedules.map((item, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={index} className="schedule">
                 <Select

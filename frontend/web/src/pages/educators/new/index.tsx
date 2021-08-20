@@ -90,7 +90,6 @@ const EducatorsNew = (): JSX.Element => {
       },
     }
 
-    console.log('payload', payload)
     await api
       .post('educators', payload)
       .then(() => {
@@ -193,17 +192,19 @@ const EducatorsNew = (): JSX.Element => {
           <fieldset>
             <legend>
               Schedule
-              <button type="button" onClick={() => addSchedule}>
+              <button type="button" onClick={addSchedule}>
                 + Add schedule
               </button>
             </legend>
 
             {schedule.map((item, index) => (
-              <div key={item.weekDay} className="schedule">
+              // eslint-disable-next-line react/no-array-index-key
+              <div key={index} className="schedule">
                 <Select
                   name="weekDay"
                   label="Week Day"
                   placeholder="Select the best day for you"
+                  value={item.weekDay}
                   options={[
                     { value: '0', label: 'Sunday' },
                     { value: '1', label: 'Monday' },
@@ -220,13 +221,15 @@ const EducatorsNew = (): JSX.Element => {
                   name="startsAt"
                   label="Start"
                   type="time"
-                  onChange={() => undefined}
+                  value={item.startsAt}
+                  onChange={(event) => fillScheduleData(event, index)}
                 />
                 <Input
                   name="endsAt"
                   label="End"
                   type="time"
-                  onChange={() => undefined}
+                  value={item.endsAt}
+                  onChange={(event) => fillScheduleData(event, index)}
                 />
               </div>
             ))}

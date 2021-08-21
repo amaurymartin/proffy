@@ -25,7 +25,6 @@ const Input: React.FC<InputProps> = ({
         <input
           type={type}
           name={name}
-          id={name}
           placeholder={placeholder}
           onChange={onChange}
         />

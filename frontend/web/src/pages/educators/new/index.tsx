@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import Header from '../../../components/header'
 import Input from '../../../components/input'
+import TextArea from '../../../components/textArea'
 import Select from '../../../components/select'
 
 import api from '../../../services/api'
@@ -151,12 +152,12 @@ const EducatorsNew = (): JSX.Element => {
               onChange={fillForm}
             />
 
-            <div className="text-area-block">
-              <label htmlFor="bio">
-                Bio
-                <textarea name="bio" value={formData.bio} onChange={fillForm} />
-              </label>
-            </div>
+            <TextArea
+              name="bio"
+              label="Bio"
+              value={formData.bio}
+              onChange={fillForm}
+            />
           </fieldset>
 
           <fieldset>
@@ -202,16 +203,12 @@ const EducatorsNew = (): JSX.Element => {
               </label>
             </div>
 
-            <div className="text-area-block">
-              <label htmlFor="description">
-                Class description
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={fillForm}
-                />
-              </label>
-            </div>
+            <TextArea
+              name="description"
+              label="Description"
+              value={formData.description}
+              onChange={fillForm}
+            />
           </fieldset>
 
           <fieldset>

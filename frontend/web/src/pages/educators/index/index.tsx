@@ -18,6 +18,7 @@ type Class = {
   subject: string
   description: string
   price: string
+  status: number
   educator: {
     key: string
   }
@@ -62,12 +63,10 @@ const EducatorsIndex = (): JSX.Element => {
     return { params: queryParams }
   }
 
-  function searchClasses(event: FormEvent) {
+  async function searchClasses(event: FormEvent) {
     event.preventDefault()
 
-    // eslint-disable-next-line no-console
-    console.log('mountQueryParams', mountQueryParams())
-    api
+    await api
       .get<ClassIndexResponse>('classes', mountQueryParams())
       .then((response) => {
         setClasses(response.data.classes)
@@ -76,9 +75,6 @@ const EducatorsIndex = (): JSX.Element => {
         // eslint-disable-next-line no-alert
         alert('Error on searching classes. Try again')
       })
-
-    // eslint-disable-next-line no-console
-    console.log('classes', classes)
   }
 
   return (
@@ -115,7 +111,7 @@ const EducatorsIndex = (): JSX.Element => {
           <Select
             name="weekDay"
             label="Week Day"
-            placeholder="Select the best day for you"
+            placeholder="Select the best day"
             options={[
               { value: '', label: 'Any' },
               { value: '0', label: 'Sunday' },
@@ -136,7 +132,9 @@ const EducatorsIndex = (): JSX.Element => {
             onChange={(event) => addQueryParam(event)}
           />
 
-          <button type="submit">Serch</button>
+          <button type="submit" onClick={searchClasses}>
+            Search
+          </button>
         </form>
       </Header>
 

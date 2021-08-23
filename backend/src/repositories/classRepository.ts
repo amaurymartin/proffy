@@ -37,7 +37,7 @@ class classRepository {
     status: string,
   ) {
     return connection('classes')
-      .select('classes.*', 'educators.key as educator_key')
+      .select('classes.*', 'classes.key as class_key', 'educators.*')
       .leftJoin('educators', 'classes.educator_id', 'educators.id')
       .leftJoin(
         'educators_schedules',

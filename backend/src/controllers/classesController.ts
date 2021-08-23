@@ -28,13 +28,18 @@ class ClassesController {
 
     return res.status(200).json({
       classes: classes.map((klass) => ({
-        key: klass.key,
+        key: klass.class_key,
         subject: klass.subject,
         description: klass.description,
-        price: klass.price,
-        status: klass.status,
+        price: Number(klass.price),
+        status: Number(klass.status),
         educator: {
-          key: klass.educator_key,
+          key: klass.key,
+          avatar: klass.avatar,
+          name: klass.name,
+          bio: klass.bio,
+          email: klass.email,
+          whatsapp: klass.whatsapp,
         },
       })),
     });

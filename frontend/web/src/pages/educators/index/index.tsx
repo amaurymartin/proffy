@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Header from '../../../components/header'
 import Select from '../../../components/select'
@@ -37,6 +37,18 @@ const EducatorsIndex = (): JSX.Element => {
     weekDay: '',
     time: '',
   })
+
+  useEffect(() => {
+    api
+      .get<ClassIndexResponse>('classes')
+      .then((response) => {
+        setClasses(response.data.classes)
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('Error on searching classes. Try again')
+      })
+  }, [])
 
   function addQueryParam(event: ChangeEvent<HTMLElement>) {
     if (event.target.nodeName === 'SELECT') {

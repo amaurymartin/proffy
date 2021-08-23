@@ -23,6 +23,7 @@ const Home = (): JSX.Element => {
         setConnections(response.headers['x-total-count'] || 0)
       })
   }, [])
+
   return (
     <div id="home">
       <div id="home-content" className="home-container">

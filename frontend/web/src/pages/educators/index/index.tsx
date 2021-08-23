@@ -17,10 +17,15 @@ type Class = {
   key: string
   subject: string
   description: string
-  price: string
+  price: number
   status: number
   educator: {
     key: string
+    avatar: string
+    name: string
+    bio: string
+    email: string
+    whatsapp: string
   }
 }
 
@@ -139,11 +144,15 @@ const EducatorsIndex = (): JSX.Element => {
       </Header>
 
       <main>
-        <Educator />
-        <Educator />
-        <Educator />
-        <Educator />
-        <Educator />
+        {classes.map((klass) => (
+          <Educator
+            key={klass.educator.key}
+            educator={klass.educator}
+            klassKey={klass.key}
+            klassSubject={klass.subject}
+            klassPrice={klass.price}
+          />
+        ))}
       </main>
     </div>
   )

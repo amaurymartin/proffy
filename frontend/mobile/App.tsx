@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
   return (
     <>
       <Home />
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </>
   )
 }

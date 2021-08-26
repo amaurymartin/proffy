@@ -16,7 +16,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins'
 
-import Home from './src/pages/home'
+import AppStack from './src/routes/appStack'
 
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
@@ -30,7 +30,7 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      <Home />
+      <AppStack />
       <StatusBar style="light" />
     </>
   )

@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/native'
+
+import { RectButton } from 'react-native-gesture-handler'
 
 import homeImg from '../../assets/images/home.png'
 import studyIcon from '../../assets/images/icons/study.png'
@@ -27,21 +29,21 @@ export default function Home(): JSX.Element {
       </Text>
 
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity
+        <RectButton
           onPress={() => navigate('EducatorsIndex')}
           style={[styles.button, styles.buttonPrimary]}
         >
           <Image source={studyIcon} />
           <Text style={styles.buttonText}>Study</Text>
-        </TouchableOpacity>
+        </RectButton>
 
-        <TouchableOpacity
+        <RectButton
           onPress={() => navigate('EducatorsNew')}
           style={[styles.button, styles.buttonSecondary]}
         >
           <Image source={teachIcon} />
           <Text style={styles.buttonText}>Teach</Text>
-        </TouchableOpacity>
+        </RectButton>
       </View>
 
       <Text style={styles.stats}>

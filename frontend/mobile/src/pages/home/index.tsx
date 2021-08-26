@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
 
       <Text style={styles.stats}>
         More than 420 people connected
-        <Image source={heartIcon} style={styles.statsIcon}/>
+        <Image source={heartIcon} style={styles.statsIcon} />
       </Text>
     </View>
   )

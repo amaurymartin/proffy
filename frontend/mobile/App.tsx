@@ -1,22 +1,32 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/style-prop-object */
 import React from 'react'
 
 import { StatusBar } from 'expo-status-bar'
-import AppLoading from 'expo-app-loading';
+import AppLoading from 'expo-app-loading'
 
-// eslint-disable-next-line camelcase
-import { useFonts, Archivo_400Regular, Archivo_700Bold } from '@expo-google-fonts/archivo'
-// eslint-disable-next-line camelcase
-import { Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins'
+import {
+  useFonts,
+  Archivo_400Regular,
+  Archivo_700Bold,
+} from '@expo-google-fonts/archivo'
+
+import {
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+} from '@expo-google-fonts/poppins'
 
 import Home from './src/pages/home'
 
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
-    Archivo_400Regular, Archivo_700Bold, Poppins_400Regular, Poppins_600SemiBold
+    Archivo_400Regular,
+    Archivo_700Bold,
+    Poppins_400Regular,
+    Poppins_600SemiBold,
   })
 
-  if(!fontsLoaded) return <AppLoading />
+  if (!fontsLoaded) return <AppLoading />
 
   return (
     <>

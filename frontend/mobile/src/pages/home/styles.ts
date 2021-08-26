@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 24,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   buttonPrimary: {
-    backgroundColor: '#9871F5'
+    backgroundColor: '#9871F5',
   },
   buttonSecondary: {
-    backgroundColor: '#04D361'
+    backgroundColor: '#04D361',
   },
   buttonText: {
     fontFamily: 'Archivo_700Bold',

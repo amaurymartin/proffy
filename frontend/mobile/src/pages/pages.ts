@@ -1,4 +1,4 @@
 export type Pages = {
-  EducatorsIndex: undefined
+  EducatorsIndexTabs: undefined
   EducatorsNew: undefined
 }

@@ -30,7 +30,7 @@ export default function Home(): JSX.Element {
 
       <View style={styles.buttonsContainer}>
         <RectButton
-          onPress={() => navigate('EducatorsIndex')}
+          onPress={() => navigate('EducatorsIndexTabs')}
           style={[styles.button, styles.buttonPrimary]}
         >
           <Image source={studyIcon} />

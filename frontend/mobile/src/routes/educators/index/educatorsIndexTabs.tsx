@@ -14,10 +14,10 @@ function EducatorsIndexTabs(): JSX.Element {
     <Navigator
       screenOptions={({ route }) => ({
         // eslint-disable-next-line react/prop-types
-        tabBarIcon: ({ color, size }) => (
+        tabBarIcon: ({ color, size, focused }) => (
           <Ionicons
             name={route.name === 'EducatorsIndex' ? 'ios-easel' : 'ios-heart'}
-            color={color}
+            color={focused ? '#8257E5' : color}
             size={size}
           />
         ),

@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "db:reset": "knex migrate:rollback --all && knex migrate:latest",
-    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "lint": "eslint src/**/*.ts --fix && prettier --config .prettierrc.json 'src/**/*.ts' --write"
+    "dev": "tsnd --respawn src/server.ts --transpile-only",
+    "lint": "eslint src/**/*.ts --fix && prettier --config .prettierrc.json 'src/**/*.ts' --write",
+    "start": "tsnd --respawn src/server.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

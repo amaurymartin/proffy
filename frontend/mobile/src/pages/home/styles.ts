@@ -51,14 +51,11 @@ const styles = StyleSheet.create({
     color: '#D4C2FF',
     fontSize: 15,
     lineHeight: 20,
-    maxWidth: 180,
+    maxWidth: 150,
     marginTop: 40,
-    alignItems: 'center',
   },
   statsIcon: {
     marginLeft: 20,
-    maxHeight: 14,
-    maxWidth: 14,
     resizeMode: 'contain',
   },
 })

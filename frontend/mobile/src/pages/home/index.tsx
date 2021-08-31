@@ -68,8 +68,7 @@ export default function Home(): JSX.Element {
       </View>
 
       <Text style={styles.stats}>
-        {`More than ${connections} people connected`}
-        <Image source={heartIcon} style={styles.statsIcon} />
+        More than {connections} people connected <Image source={heartIcon} />
       </Text>
     </View>
   )

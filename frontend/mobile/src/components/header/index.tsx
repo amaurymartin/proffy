@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -17,9 +17,11 @@ import styles from './styles'
 
 type HeaderProps = {
   title: string
+  icon?: ReactNode
+  children?: ReactNode
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, icon, children }) => {
   const { navigate } = useNavigation<NativeStackNavigationProp<Pages>>()
 
   return (
@@ -32,12 +34,25 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         <Image source={logoImg} resizeMode="contain" />
       </View>
 
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{title}</Text>
+        {icon}
+      </View>
+
+      {children}
     </View>
   )
 }
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
+  icon: PropTypes.node,
+  children: PropTypes.node,
 }
+
+Header.defaultProps = {
+  icon: null,
+  children: null,
+}
+
 export default Header

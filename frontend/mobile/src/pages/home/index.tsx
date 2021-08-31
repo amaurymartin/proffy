@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Image, Text, View } from 'react-native'
 
@@ -14,10 +14,31 @@ import heartIcon from '../../assets/images/icons/heart.png'
 
 import { Pages } from '../pages'
 
+import api from '../../services/api'
+
 import styles from './styles'
 
 export default function Home(): JSX.Element {
   const { navigate } = useNavigation<NativeStackNavigationProp<Pages>>()
+
+  const [connections, setConnections] = useState(0)
+
+  useEffect(() => {
+    const acceptedClassStatus = 1
+
+    async function getConnectionsCount() {
+      await api
+        .get('classes', { params: { status: acceptedClassStatus } })
+        .then((response) => {
+          setConnections(response.headers['x-total-count'] || 0)
+        })
+        .catch(() => {
+          setConnections(0)
+        })
+    }
+
+    getConnectionsCount()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -47,7 +68,7 @@ export default function Home(): JSX.Element {
       </View>
 
       <Text style={styles.stats}>
-        More than 420 people connected
+        {`More than ${connections} people connected`}
         <Image source={heartIcon} style={styles.statsIcon} />
       </Text>
     </View>

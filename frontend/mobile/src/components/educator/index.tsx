@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Linking, Text, View } from 'react-native'
 
 import PropTypes from 'prop-types'
 
@@ -54,7 +54,12 @@ const Educator: React.FC<EducatorProps> = ({
         <RectButton style={[styles.favoriteButton, styles.favorited]}>
           <Image source={heartOulineIcon} />
         </RectButton>
-        <RectButton style={styles.whatsappButton}>
+        <RectButton
+          style={styles.whatsappButton}
+          onPress={() =>
+            Linking.openURL(`https://wa.me/55${educator.whatsapp}`)
+          }
+        >
           <Image source={whatsappIcon} />
           <Text style={styles.whatsappButtonText}>Contact</Text>
         </RectButton>

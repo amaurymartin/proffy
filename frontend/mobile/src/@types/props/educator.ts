@@ -8,6 +8,7 @@ type Educator = {
     whatsapp: string
   }
   isFavorite: boolean
+  klassKey: string
   klassSubject: string
   klassPrice: number
 }

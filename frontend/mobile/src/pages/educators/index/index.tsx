@@ -162,6 +162,7 @@ export default function EducatorsIndex(): JSX.Element {
                 .map((fav) => fav.educator.key)
                 .includes(klass.educator.key) || false
             }
+            klassKey={klass.key}
             klassSubject={klass.subject}
             klassPrice={klass.price}
           />

@@ -13,10 +13,12 @@ import unfavoriteIcon from '../../assets/images/icons/unfavorite.png'
 import whatsappIcon from '../../assets/images/icons/whatsapp.png'
 
 import styles from './styles'
+import api from '../../services/api'
 
 const Educator: React.FC<EducatorProps> = ({
   educator,
   isFavorite,
+  klassKey,
   klassSubject,
   klassPrice,
 }) => {
@@ -34,6 +36,7 @@ const Educator: React.FC<EducatorProps> = ({
       favorites.push({
         educator,
         isFavorite: !favorited,
+        klassKey,
         klassSubject,
         klassPrice,
       })
@@ -41,6 +44,30 @@ const Educator: React.FC<EducatorProps> = ({
 
     await AsyncStorage.setItem('favorites', JSON.stringify(favorites))
     setFavorited(!favorited)
+  }
+
+  async function scheduleClass() {
+    // TODO: Should this const be an env?
+    const acceptedClassStatus = 1
+
+    const payload = {
+      klass: {
+        key: 'status',
+        value: acceptedClassStatus,
+      },
+    }
+
+    await api
+      .patch(`classes/${klassKey}`, payload)
+      .then(() => {
+        // eslint-disable-next-line no-alert
+        alert('Class schedule successfully')
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('Error on scheduling the class. Try again later')
+      })
+      .finally(() => Linking.openURL(`https://wa.me/55${educator.whatsapp}`))
   }
 
   return (
@@ -78,9 +105,7 @@ const Educator: React.FC<EducatorProps> = ({
           </RectButton>
           <RectButton
             style={styles.whatsappButton}
-            onPress={() =>
-              Linking.openURL(`https://wa.me/55${educator.whatsapp}`)
-            }
+            onPress={() => scheduleClass()}
           >
             <Image source={whatsappIcon} />
             <Text style={styles.whatsappButtonText}>Contact</Text>
@@ -101,6 +126,7 @@ Educator.propTypes = {
     whatsapp: PropTypes.string.isRequired,
   }).isRequired,
   isFavorite: PropTypes.bool.isRequired,
+  klassKey: PropTypes.string.isRequired,
   klassSubject: PropTypes.string.isRequired,
   klassPrice: PropTypes.number.isRequired,
 }

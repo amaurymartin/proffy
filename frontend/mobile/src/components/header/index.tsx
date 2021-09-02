@@ -8,18 +8,13 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { BorderlessButton } from 'react-native-gesture-handler'
 
+import HeaderProps from '../../@types/props/header'
 import { Pages } from '../../pages/pages'
 
 import logoImg from '../../assets/images/logo.png'
 import backIcon from '../../assets/images/icons/back.png'
 
 import styles from './styles'
-
-type HeaderProps = {
-  title: string
-  icon?: ReactNode
-  children?: ReactNode
-}
 
 const Header: React.FC<HeaderProps> = ({ title, icon, children }) => {
   const { navigate } = useNavigation<NativeStackNavigationProp<Pages>>()

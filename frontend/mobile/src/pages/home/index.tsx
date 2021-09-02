@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { Image, Text, View } from 'react-native'
-
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { useNavigation } from '@react-navigation/native'
-
 import { RectButton } from 'react-native-gesture-handler'
 
 import homeImg from '../../assets/images/home.png'
@@ -24,21 +23,28 @@ export default function Home(): JSX.Element {
   const [connections, setConnections] = useState(0)
 
   useEffect(() => {
-    const acceptedClassStatus = 1
-
-    async function getConnectionsCount() {
-      await api
-        .get('classes', { params: { status: acceptedClassStatus } })
-        .then((response) => {
-          setConnections(response.headers['x-total-count'] || 0)
-        })
-        .catch(() => {
-          setConnections(0)
-        })
-    }
-
     getConnectionsCount()
   }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      getConnectionsCount()
+    }, [])
+  )
+
+  async function getConnectionsCount() {
+    // TODO: Should this const be an env?
+    const acceptedClassStatus = 1
+
+    await api
+      .get('classes', { params: { status: acceptedClassStatus } })
+      .then((response) => {
+        setConnections(response.headers['x-total-count'] || 0)
+      })
+      .catch(() => {
+        setConnections(0)
+      })
+  }
 
   return (
     <View style={styles.container}>

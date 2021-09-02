@@ -1,42 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
-import {
-  NativeSyntheticEvent,
-  ScrollView,
-  Text,
-  TextInput,
-  TextInputChangeEventData,
-  View,
-} from 'react-native'
-
+import { ScrollView, Text, TextInput, View } from 'react-native'
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useFocusEffect } from '@react-navigation/native'
 
 import { Feather } from '@expo/vector-icons'
 
 import Header from '../../../components/header'
 import Educator from '../../../components/educator'
 
-import styles from './styles'
+import Class from '../../../@types/props/class'
+import EducatorProps from '../../../@types/props/educator'
+
 import api from '../../../services/api'
+
+import styles from './styles'
 
 type ClassIndexResponse = {
   classes: Class[]
-}
-
-type Class = {
-  key: string
-  subject: string
-  description: string
-  price: number
-  status: number
-  educator: {
-    key: string
-    avatar: string
-    name: string
-    bio: string
-    email: string
-    whatsapp: string
-  }
 }
 
 export default function EducatorsIndex(): JSX.Element {
@@ -45,22 +27,41 @@ export default function EducatorsIndex(): JSX.Element {
   const [weekDay, setWeekDay] = useState('')
   const [time, setTime] = useState('')
   const [classes, setClasses] = useState<Class[]>([])
+  const [favorites, setFavorites] = useState<EducatorProps[]>([])
 
   useEffect(() => {
-    async function getClasses() {
-      await api
-        .get<ClassIndexResponse>('classes')
-        .then((response) => {
-          setClasses(response.data.classes)
-        })
-        .catch(() => {
-          // eslint-disable-next-line no-alert
-          alert('Error on searching classes. Try again')
-        })
-    }
-
     getClasses()
+    getFavorites()
   }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      getFavorites()
+    }, [])
+  )
+
+  async function getClasses() {
+    await api
+      .get<ClassIndexResponse>('classes')
+      .then((response) => {
+        setClasses(response.data.classes)
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('Error on searching classes. Try again')
+      })
+  }
+
+  async function getFavorites() {
+    await AsyncStorage.getItem('favorites')
+      .then((response) => {
+        if (response) setFavorites(JSON.parse(response) || [])
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('Error on getting favorites')
+      })
+  }
 
   // TODO: improve this method
   function formatTime(unformatedTime: string) {
@@ -156,6 +157,11 @@ export default function EducatorsIndex(): JSX.Element {
           <Educator
             key={klass.educator.key}
             educator={klass.educator}
+            isFavorite={
+              favorites
+                .map((fav) => fav.educator.key)
+                .includes(klass.educator.key) || false
+            }
             klassSubject={klass.subject}
             klassPrice={klass.price}
           />
